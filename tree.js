@@ -18,12 +18,17 @@ function treeFactory(treeArray = []){
             
           let parentNode =  getRelevantBaseNode(element, rootNode)
           let newNode = nodeFactory(element)
-          parentNode.leftChildNode = element < parentNode.attribute ? newNode : null
-          parentNode.rightChildNode = element > parentNode.attribute ? newNode : null
+
+          if(element<parentNode.attribute){
+            parentNode.leftChildNode = newNode
+          } else {
+            parentNode.rightChildNode = newNode
+          }
 
 
         });
-        console.log(rootNode)
+
+        return rootNode
 
     }
 
@@ -41,7 +46,11 @@ function treeFactory(treeArray = []){
 
     }
 
-    return{root}
+    function getRootNode(){
+        return root
+    }
+
+    return{getRootNode}
 
 }
 
