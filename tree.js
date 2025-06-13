@@ -19,7 +19,7 @@ function treeFactory(treeArray = []){
           let parentNode =  getRelevantBaseNode(element, rootNode)
           let newNode = nodeFactory(element)
 
-          if(element<parentNode.attribute){
+          if(element < parentNode.attribute){
             parentNode.leftChildNode = newNode
           } else {
             parentNode.rightChildNode = newNode
@@ -29,6 +29,21 @@ function treeFactory(treeArray = []){
         });
 
         return rootNode
+
+    }
+
+    function insert(value){
+        let parentNode =  getRelevantBaseNode(value, root)
+        let newNode = nodeFactory(value)
+        if(value < parentNode.attribute){
+            parentNode.leftChildNode = newNode
+          } else {
+            parentNode.rightChildNode = newNode
+          }
+
+    }
+
+    function deleteItem(value){
 
     }
 
@@ -50,7 +65,7 @@ function treeFactory(treeArray = []){
         return root
     }
 
-    return{getRootNode}
+    return{getRootNode, insert}
 
 }
 
