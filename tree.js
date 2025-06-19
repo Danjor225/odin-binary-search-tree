@@ -171,12 +171,17 @@ function treeFactory(treeArray = []){
     }
 
     let traversalFunctions= traversalFunctionsFactory(root)
-    function testingAMessage(message){
-        traversalFunctions.testMessage(message)
+
+    function levelOrder(){
+        traversalFunctions.levelOrder(testingAMessage)
+    }
+
+    function testingAMessage(node){
+        console.log(node.attribute)
     }
     
 
-    return{getRootNode, insert, deleteItem, find, testingAMessage}
+    return{getRootNode, insert, deleteItem, find, levelOrder}
 
 }
 
