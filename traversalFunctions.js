@@ -23,18 +23,35 @@ function traversalFunctionsFactory(root){
         
       
 
-        if(treeQueue.length == 0){
-            traversedTree = true
-        }
+            if(treeQueue.length == 0){
+                traversedTree = true
+            }
 
-    }
+        }
 
         
     }
 
-    
+    function inOrder(callback, node = root){
 
-    return {levelOrder}
+        if(!callback){
+            throw new Error('No callback was given for  Inorder')
+            
+        }
+        if(node == null){
+            return
+        }
+        inOrder(callback, node.leftChildNode)
+        callback(node)
+        inOrder(callback, node.rightChildNode)
+
+        
+
+       
+
+    }
+
+    return {levelOrder, inOrder}
 }
 
     export {traversalFunctionsFactory}

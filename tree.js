@@ -176,12 +176,16 @@ function treeFactory(treeArray = []){
         traversalFunctions.levelOrder(testingAMessage)
     }
 
+    function inOrder(){
+        traversalFunctions.inOrder(testingAMessage)
+    }
+
     function testingAMessage(node){
         console.log(node.attribute)
     }
     
 
-    return{getRootNode, insert, deleteItem, find, levelOrder}
+    return{getRootNode, insert, deleteItem, find, levelOrder, inOrder}
 
 }
 

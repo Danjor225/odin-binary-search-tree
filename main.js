@@ -39,4 +39,5 @@ prettyPrint(newTreeFactory.getRootNode())
 // console.log(newTreeFactory.find(0))
 // console.log(newTreeFactory.find(800))
 
-newTreeFactory.levelOrder()
+// newTreeFactory.levelOrder()
+newTreeFactory.inOrder()
