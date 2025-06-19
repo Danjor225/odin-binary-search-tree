@@ -1,6 +1,6 @@
 import {treeFactory} from './tree.js'
 
-let newTreeFactory = treeFactory([1, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324])
+let newTreeFactory = treeFactory([30, 7, 4, 23, 8, 9, 4, 3, 5, 7, 9, 67, 6345, 324])
 
 const prettyPrint = (node, prefix = '', isLeft = true) => {
   if (node === null) {
@@ -17,8 +17,18 @@ const prettyPrint = (node, prefix = '', isLeft = true) => {
 
 prettyPrint(newTreeFactory.getRootNode())
 newTreeFactory.insert(6)
+newTreeFactory.insert(0)
+newTreeFactory.insert(2)
+newTreeFactory.insert(1)
+newTreeFactory.insert(200)
+newTreeFactory.insert(123)
+newTreeFactory.insert(111)
+newTreeFactory.insert(92)
 prettyPrint(newTreeFactory.getRootNode())
 newTreeFactory.deleteItem(6)
 prettyPrint(newTreeFactory.getRootNode())
 newTreeFactory.deleteItem(6345)
+prettyPrint(newTreeFactory.getRootNode())
+newTreeFactory.deleteItem(7)
+newTreeFactory.deleteItem(7)
 prettyPrint(newTreeFactory.getRootNode())

@@ -65,8 +65,10 @@ function treeFactory(treeArray = []){
         if(noOfChildren == 0){
             if(nodeToRemove.isLeft){
                 nodeToRemoveParent.leftChildNode = null
+                
             } else {
                 nodeToRemoveParent.rightChildNode = null
+                
             }
 
         } else if(noOfChildren == 1){
@@ -80,16 +82,16 @@ function treeFactory(treeArray = []){
             }
 
         } else if (noOfChildren == 2){
-
+            console.log('2 children')
+            let nodeToSwapWithParent = getLowestRightNodeParent(nodeToRemove)
+            nodeToRemove.attribute = nodeToSwapWithParent.leftChildNode.attribute
+            nodeToSwapWithParent.leftChildNode = null
         }
 
     }
 
     
 
-    function assignChildToParent(node){
-
-    }
     function getNoOfChildren(nodeToCheck){
         let count = 0
 
@@ -131,6 +133,21 @@ function treeFactory(treeArray = []){
 
         return currentNode
 
+    }
+
+    function getLowestRightNodeParent(nodeToStartFrom){
+
+
+        let currentNode = nodeToStartFrom
+        let nextNode = nodeToStartFrom.rightChildNode
+        
+        while(nextNode.leftChildNode){
+            currentNode = nextNode
+            nextNode = currentNode.leftChildNode
+           
+        }
+
+        return currentNode
     }
 
     function getRootNode(){
