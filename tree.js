@@ -73,13 +73,15 @@ function treeFactory(treeArray = []){
 
         } else if(noOfChildren == 1){
             console.log('One Child')
-            if(nodeToRemove.leftChildNode){
-                nodeToRemove.attribute = nodeToRemove.leftChildNode.attribute
-                nodeToRemove.leftChildNode = null
+            if(nodeToRemove.isLeft){
+                nodeToRemoveParent.leftChildNode = nodeToRemove.leftChildNode ? nodeToRemove.leftChildNode : nodeToRemove.rightChildNode
+                
             } else {
-                nodeToRemove.attribute= nodeToRemove.rightChildNode.attribute
-                nodeToRemove.rightChildNode = null
+                nodeToRemoveParent.rightChildNode = nodeToRemove.leftChildNode ? nodeToRemove.leftChildNode : nodeToRemove.rightChildNode
+                
             }
+           
+       
 
         } else if (noOfChildren == 2){
             console.log('2 children')
