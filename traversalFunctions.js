@@ -45,13 +45,36 @@ function traversalFunctionsFactory(root){
         callback(node)
         inOrder(callback, node.rightChildNode)
 
-        
-
-       
-
     }
 
-    return {levelOrder, inOrder}
+    function preOrder(callback, node = root){
+        if(!callback){
+            throw new Error('No callback was given for  Inorder')
+            
+        }
+        if(node == null){
+            return
+        }
+        callback(node)
+        inOrder(callback, node.leftChildNode)
+        inOrder(callback, node.rightChildNode)
+    }
+
+    function postOrder(callback, node = root){
+         if(!callback){
+            throw new Error('No callback was given for  Inorder')
+            
+        }
+        if(node == null){
+            return
+        }
+        inOrder(callback, node.leftChildNode)
+        inOrder(callback, node.rightChildNode)
+        callback(node)
+        
+    }
+
+    return {levelOrder, inOrder, postOrder, preOrder}
 }
 
     export {traversalFunctionsFactory}

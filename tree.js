@@ -180,12 +180,19 @@ function treeFactory(treeArray = []){
         traversalFunctions.inOrder(testingAMessage)
     }
 
+    function preOrder(){
+        traversalFunctions.preOrder(testingAMessage)
+    }
+    function postOrder(){
+        traversalFunctions.postOrder(testingAMessage)
+    }
+
     function testingAMessage(node){
         console.log(node.attribute)
     }
     
 
-    return{getRootNode, insert, deleteItem, find, levelOrder, inOrder}
+    return{getRootNode, insert, deleteItem, find, levelOrder, inOrder, preOrder, postOrder}
 
 }
 
