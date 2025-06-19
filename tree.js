@@ -49,6 +49,10 @@ function treeFactory(treeArray = []){
 
     function deleteItem(value){
         let nodeToRemoveParent = getSpecificNodeParent(value)
+        if(!nodeToRemoveParent){
+            console.log('Number to delete doesnt exist')
+            return
+        }
         let nodeToRemove
         
         if(nodeToRemoveParent.leftChildNode != null && nodeToRemoveParent.leftChildNode.attribute == value){
@@ -72,7 +76,7 @@ function treeFactory(treeArray = []){
             }
 
         } else if(noOfChildren == 1){
-            console.log('One Child')
+            
             if(nodeToRemove.isLeft){
                 nodeToRemoveParent.leftChildNode = nodeToRemove.leftChildNode ? nodeToRemove.leftChildNode : nodeToRemove.rightChildNode
                 
@@ -84,7 +88,7 @@ function treeFactory(treeArray = []){
        
 
         } else if (noOfChildren == 2){
-            console.log('2 children')
+            
             let nodeToSwapWithParent = getLowestRightNodeParent(nodeToRemove)
             nodeToRemove.attribute = nodeToSwapWithParent.leftChildNode.attribute
             nodeToSwapWithParent.leftChildNode = null
@@ -92,7 +96,17 @@ function treeFactory(treeArray = []){
 
     }
 
-    
+    function find(value){
+       let nodeToFindParent = getSpecificNodeParent(value)
+       if(!nodeToFindParent){
+        
+        return null
+       }
+       return nodeToFindParent.leftChildNode.attribute == value ? nodeToFindParent.leftChildNode : nodeToFindParent.rightChildNode
+    }
+
+
+
 
     function getNoOfChildren(nodeToCheck){
         let count = 0
@@ -111,14 +125,14 @@ function treeFactory(treeArray = []){
 
         let currentNode = root
         let nextNode = value < root.attribute ? root.leftChildNode : root.rightChildNode
-        while(nextNode.attribute != value){
+        while(nextNode != null && nextNode.attribute != value){
             
             currentNode = nextNode
             nextNode = value < currentNode.attribute ? currentNode.leftChildNode : currentNode.rightChildNode
 
         }
 
-        return currentNode
+        return nextNode == null ? null : currentNode
 
 
     }
@@ -156,7 +170,7 @@ function treeFactory(treeArray = []){
         return root
     }
 
-    return{getRootNode, insert, deleteItem}
+    return{getRootNode, insert, deleteItem, find}
 
 }
 
