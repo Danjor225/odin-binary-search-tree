@@ -1,6 +1,6 @@
-function nodeFactory(attribute, leftChildNode = null, rightChildNode = null){
+function nodeFactory(attribute, leftChildNode = null, rightChildNode = null, toLeft){
    
-    return {attribute, leftChildNode,rightChildNode}
+    return {attribute, leftChildNode,rightChildNode, toLeft}
 
 }
 

@@ -18,3 +18,7 @@ const prettyPrint = (node, prefix = '', isLeft = true) => {
 prettyPrint(newTreeFactory.getRootNode())
 newTreeFactory.insert(6)
 prettyPrint(newTreeFactory.getRootNode())
+newTreeFactory.deleteItem(6)
+prettyPrint(newTreeFactory.getRootNode())
+newTreeFactory.deleteItem(6345)
+prettyPrint(newTreeFactory.getRootNode())

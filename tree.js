@@ -21,8 +21,10 @@ function treeFactory(treeArray = []){
 
           if(element < parentNode.attribute){
             parentNode.leftChildNode = newNode
+            newNode.toLeft = true
           } else {
             parentNode.rightChildNode = newNode
+            newNode.toLeft = false
           }
 
 
@@ -37,13 +39,83 @@ function treeFactory(treeArray = []){
         let newNode = nodeFactory(value)
         if(value < parentNode.attribute){
             parentNode.leftChildNode = newNode
+            newNode.toLeft = true
           } else {
             parentNode.rightChildNode = newNode
+            newNode.toLeft = false
           }
 
     }
 
     function deleteItem(value){
+        let nodeToRemoveParent = getSpecificNodeParent(value)
+        let nodeToRemove
+        
+        if(nodeToRemoveParent.leftChildNode != null && nodeToRemoveParent.leftChildNode.attribute == value){
+            nodeToRemove = nodeToRemoveParent.leftChildNode
+        }
+
+        if(nodeToRemoveParent.rightChildNode != null && nodeToRemoveParent.rightChildNode.attribute == value){
+            nodeToRemove = nodeToRemoveParent.rightChildNode
+        }
+
+
+        let noOfChildren = getNoOfChildren(nodeToRemove)
+
+        if(noOfChildren == 0){
+            if(nodeToRemove.isLeft){
+                nodeToRemoveParent.leftChildNode = null
+            } else {
+                nodeToRemoveParent.rightChildNode = null
+            }
+
+        } else if(noOfChildren == 1){
+            console.log('One Child')
+            if(nodeToRemove.leftChildNode){
+                nodeToRemove.attribute = nodeToRemove.leftChildNode.attribute
+                nodeToRemove.leftChildNode = null
+            } else {
+                nodeToRemove.attribute= nodeToRemove.rightChildNode.attribute
+                nodeToRemove.rightChildNode = null
+            }
+
+        } else if (noOfChildren == 2){
+
+        }
+
+    }
+
+    
+
+    function assignChildToParent(node){
+
+    }
+    function getNoOfChildren(nodeToCheck){
+        let count = 0
+
+        if(nodeToCheck.leftChildNode != null){
+            count ++
+        }
+
+        if(nodeToCheck.rightChildNode != null){
+            count ++
+        }
+
+        return count
+    }
+    function getSpecificNodeParent(value){
+
+        let currentNode = root
+        let nextNode = value < root.attribute ? root.leftChildNode : root.rightChildNode
+        while(nextNode.attribute != value){
+            
+            currentNode = nextNode
+            nextNode = value < currentNode.attribute ? currentNode.leftChildNode : currentNode.rightChildNode
+
+        }
+
+        return currentNode
+
 
     }
 
@@ -65,7 +137,7 @@ function treeFactory(treeArray = []){
         return root
     }
 
-    return{getRootNode, insert}
+    return{getRootNode, insert, deleteItem}
 
 }
 
