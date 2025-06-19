@@ -38,3 +38,5 @@ newTreeFactory.deleteItem(800)
 prettyPrint(newTreeFactory.getRootNode())
 console.log(newTreeFactory.find(0))
 console.log(newTreeFactory.find(800))
+
+newTreeFactory.testingAMessage('I am testing this message')

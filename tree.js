@@ -1,5 +1,5 @@
 import {nodeFactory} from './node.js'
-
+import {traversalFunctionsFactory} from './traversalFunctions.js'
 
 function treeFactory(treeArray = []){
 
@@ -170,7 +170,13 @@ function treeFactory(treeArray = []){
         return root
     }
 
-    return{getRootNode, insert, deleteItem, find}
+    let traversalFunctions= traversalFunctionsFactory(root)
+    function testingAMessage(message){
+        traversalFunctions.testMessage(message)
+    }
+    
+
+    return{getRootNode, insert, deleteItem, find, testingAMessage}
 
 }
 
