@@ -140,7 +140,7 @@ function treeFactory(treeArray = []){
     function getSpecificNode(value){
 
         if(root.attribute == value) return root
-        
+
         let currentNode = root
 
        
@@ -224,10 +224,29 @@ function treeFactory(treeArray = []){
         
         
     }
+
+    function depth(value){
+        let depthCount = 0
+
+        if(root.attribute == value) return depthCount
+
+        let currentNode = root
+       
+        let nextNode = value < root.attribute ? root.leftChildNode : root.rightChildNode
+        depthCount ++
+        while(nextNode != null && nextNode.attribute != value){
+            
+            currentNode = nextNode
+            nextNode = value < currentNode.attribute ? currentNode.leftChildNode : currentNode.rightChildNode
+            depthCount ++
+        }
+
+        return !nextNode ? null : depthCount
+
+    }
     
 
-
-    return{getRootNode, insert, deleteItem, find, levelOrder, inOrder, preOrder, postOrder, height}
+    return{getRootNode, insert, deleteItem, find, levelOrder, inOrder, preOrder, postOrder, height, depth}
 
 }
 
