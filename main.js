@@ -50,3 +50,6 @@ prettyPrint(newTreeFactory.getRootNode())
 // console.log(newTreeFactory.depth(800))
 
 console.log(newTreeFactory.isBalanced())
+newTreeFactory.rebalance()
+prettyPrint(newTreeFactory.getRootNode())
+console.log(newTreeFactory.isBalanced())

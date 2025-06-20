@@ -274,9 +274,26 @@ function treeFactory(treeArray = []){
 
 
     }
+
+    function rebalance(){
+        let arrayToBeBalanced = []
+
+        traversalFunctions.inOrder(addToArray)
+
+        function addToArray(node){
+            arrayToBeBalanced.push(node.attribute)
+
+        }
+
+        
+        root = buildTree(arrayToBeBalanced)      
+
+
+    
+    }
     
 
-    return{getRootNode, insert, deleteItem, find, levelOrder, inOrder, preOrder, postOrder, height, depth, isBalanced}
+    return{getRootNode, insert, deleteItem, find, levelOrder, inOrder, preOrder, postOrder, height, depth, isBalanced, rebalance}
 
 }
 
