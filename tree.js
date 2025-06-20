@@ -244,9 +244,39 @@ function treeFactory(treeArray = []){
         return !nextNode ? null : depthCount
 
     }
+
+    function isBalanced(){
+
+        
+        let isBalancedCheck = true
+        
+
+        traversalFunctions.preOrder(compareHeights)
+
+
+        
+        return isBalancedCheck
+
+        
+        function compareHeights(node){
+            let currentleftNode = node.leftChildNode
+            let currentRightNode = node.rightChildNode
+
+            
+            let isBalancedFactor = traversalFunctions.findNodelevelOrder(currentleftNode) - traversalFunctions.findNodelevelOrder(currentRightNode)
+            if(isBalancedFactor < -1 || isBalancedFactor > 1){
+                isBalancedCheck = false
+                return
+            } 
+            
+        }
+        
+
+
+    }
     
 
-    return{getRootNode, insert, deleteItem, find, levelOrder, inOrder, preOrder, postOrder, height, depth}
+    return{getRootNode, insert, deleteItem, find, levelOrder, inOrder, preOrder, postOrder, height, depth, isBalanced}
 
 }
 

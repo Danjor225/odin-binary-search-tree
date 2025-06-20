@@ -78,7 +78,7 @@ function traversalFunctionsFactory(root){
         let depthCount = 0
         let traversedTree = false
         let treeQueue = [node]
-       
+       if(node == null) return depthCount
       
         while(!traversedTree){
 
