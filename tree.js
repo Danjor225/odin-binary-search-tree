@@ -7,33 +7,51 @@ function treeFactory(treeArray = []){
 
     function buildTree(array){
 
-        let rootNode
+       let sortedArray = array.sort((a,b) => a-b)
 
-        array.forEach(element => {
+       return sortedArrayToBSTRecur(sortedArray, 0, sortedArray.length - 1);
 
-            if(!rootNode){
-                rootNode = nodeFactory(element)
-                return
-            }
+        // array.forEach(element => {
+
+        //     if(!rootNode){
+        //         rootNode = nodeFactory(element)
+        //         return
+        //     }
             
-          let parentNode =  getRelevantBaseNode(element, rootNode)
-          let newNode = nodeFactory(element)
+        //   let parentNode =  getRelevantBaseNode(element, rootNode)
+        //   let newNode = nodeFactory(element)
 
-          if(element < parentNode.attribute){
-            parentNode.leftChildNode = newNode
-            newNode.toLeft = true
-          } else {
-            parentNode.rightChildNode = newNode
-            newNode.toLeft = false
-          }
+        //   if(element < parentNode.attribute){
+        //     parentNode.leftChildNode = newNode
+        //     newNode.toLeft = true
+        //   } else {
+        //     parentNode.rightChildNode = newNode
+        //     newNode.toLeft = false
+        //   }
 
 
-        });
+        // });
 
-        return rootNode
+        // return rootNode
 
     }
+    function sortedArrayToBSTRecur(arr, start, end) {
+    if (start > end) return null;
 
+    // Find the middle element
+    let mid = start + Math.floor((end - start) / 2);
+
+    // Create root node
+    let root = nodeFactory(arr[mid]);
+
+    // Create left subtree
+    root.leftChildNode = sortedArrayToBSTRecur(arr, start, mid - 1);
+
+    // Create right subtree
+    root.rightChildNode = sortedArrayToBSTRecur(arr, mid + 1, end);
+
+    return root;
+}
     function insert(value){
         let parentNode =  getRelevantBaseNode(value, root)
         let newNode = nodeFactory(value)
@@ -287,7 +305,7 @@ function treeFactory(treeArray = []){
 
         
         root = buildTree(arrayToBeBalanced)      
-
+        traversalFunctions.setRootTraversal(root)
 
     
     }

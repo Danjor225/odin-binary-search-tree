@@ -1,5 +1,9 @@
-function traversalFunctionsFactory(root){
-        
+function traversalFunctionsFactory(rootTraversal){
+        let root = rootTraversal
+
+        function setRootTraversal(rootTraversal){
+            root = rootTraversal
+        }
     function levelOrder(callback){
 
         if(!callback){
@@ -107,7 +111,7 @@ function traversalFunctionsFactory(root){
         
     }
 
-    return {levelOrder, inOrder, postOrder, preOrder, findNodelevelOrder}
+    return {levelOrder, inOrder, postOrder, preOrder, findNodelevelOrder, setRootTraversal}
 }
 
     export {traversalFunctionsFactory}
