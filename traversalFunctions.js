@@ -56,8 +56,8 @@ function traversalFunctionsFactory(root){
             return
         }
         callback(node)
-        inOrder(callback, node.leftChildNode)
-        inOrder(callback, node.rightChildNode)
+        preOrder(callback, node.leftChildNode)
+        preOrder(callback, node.rightChildNode)
     }
 
     function postOrder(callback, node = root){
@@ -68,13 +68,46 @@ function traversalFunctionsFactory(root){
         if(node == null){
             return
         }
-        inOrder(callback, node.leftChildNode)
-        inOrder(callback, node.rightChildNode)
+        postOrder(callback, node.leftChildNode)
+        postOrder(callback, node.rightChildNode)
         callback(node)
         
     }
 
-    return {levelOrder, inOrder, postOrder, preOrder}
+    function findNodelevelOrder(node){
+        let depthCount = 0
+        let traversedTree = false
+        let treeQueue = [node]
+       
+      
+        while(!traversedTree){
+
+           let levelSize = treeQueue.length
+
+           for(let x = 0 ; x < levelSize ; x ++){
+            if(treeQueue[0].leftChildNode) treeQueue.push(treeQueue[0].leftChildNode)
+            if(treeQueue[0].rightChildNode) treeQueue.push(treeQueue[0].rightChildNode)
+            treeQueue.shift()
+           }
+                
+           
+            
+
+        
+      
+
+            if(treeQueue.length == 0){
+                return depthCount
+            }
+            depthCount ++
+        }
+
+        return depthCount
+
+        
+    }
+
+    return {levelOrder, inOrder, postOrder, preOrder, findNodelevelOrder}
 }
 
     export {traversalFunctionsFactory}

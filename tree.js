@@ -122,7 +122,7 @@ function treeFactory(treeArray = []){
         return count
     }
     function getSpecificNodeParent(value){
-
+        
         let currentNode = root
         let nextNode = value < root.attribute ? root.leftChildNode : root.rightChildNode
         while(nextNode != null && nextNode.attribute != value){
@@ -135,6 +135,24 @@ function treeFactory(treeArray = []){
         return nextNode == null ? null : currentNode
 
 
+    }
+
+    function getSpecificNode(value){
+
+        if(root.attribute == value) return root
+        
+        let currentNode = root
+
+       
+        let nextNode = value < root.attribute ? root.leftChildNode : root.rightChildNode
+        while(nextNode != null && nextNode.attribute != value){
+            
+            currentNode = nextNode
+            nextNode = value < currentNode.attribute ? currentNode.leftChildNode : currentNode.rightChildNode
+
+        }
+
+        return nextNode.attribute == value ? nextNode : null
     }
 
     function getRelevantBaseNode(numberToAssign, rootNode){
@@ -190,9 +208,26 @@ function treeFactory(treeArray = []){
     function testingAMessage(node){
         console.log(node.attribute)
     }
+
+    function height(value){
+
+       let nodeToStartCountFrom = getSpecificNode(value)
+
+       if(!nodeToStartCountFrom){
+        return null
+       }
+
+
+       return traversalFunctions.findNodelevelOrder(nodeToStartCountFrom)
+        
+
+        
+        
+    }
     
 
-    return{getRootNode, insert, deleteItem, find, levelOrder, inOrder, preOrder, postOrder}
+
+    return{getRootNode, insert, deleteItem, find, levelOrder, inOrder, preOrder, postOrder, height}
 
 }
 
